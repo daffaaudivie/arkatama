@@ -37,8 +37,9 @@ Endpoint untuk mengecek apakah API berjalan dengan baik.
 Endpoint untuk mendaftarkan user baru.
 
 POST /user/register
-Parameter	Value
-Auth	❌ No
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
 📥 Request Body
 json
 
@@ -65,8 +66,9 @@ json
 🔐 Login User
 Endpoint untuk login user yang sudah terdaftar.
 POST /user/login
-Parameter	Value
-Auth	❌ No
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
 📥 Request Body
 json
 {
@@ -90,8 +92,9 @@ json
 🚪 Logout User
 Endpoint untuk logout user.
 POST /user/logout
-Parameter	Value
-Auth	✅ Bearer token required
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Bearer token required |
 📥 Headers
 Authorization: Bearer <your_token_here> contoh: Bearer 1|ssghN7CU1QfaWLiYm1U3YcyLsaHlCbabwsjIoyO9c4f041c8"
 📤 Response
@@ -104,14 +107,16 @@ json
 Mendapatkan data profile user yang sedang login.
 
 GET /user/profile
-Parameter	Value
-Auth	✅ Bearer token required
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Bearer token required |
 ✏️ Update Profile
 Mengupdate data profile user.
 
 PUT /user/profile
-Parameter	Value
-Auth	✅ Bearer token required
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Bearer token required |
 📥 Request Body Example
 json
 {
