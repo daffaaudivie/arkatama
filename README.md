@@ -15,39 +15,39 @@
   - [👤 Profile Management](#-profile-management)
 
 ## 🌐 Base URL
+🌐 Base URL
 http://localhost:8000/api
 
 
-> **📝 Note:** Ganti `localhost:8000` dengan URL server jika sudah di-deploy.
+📝 Note: Ganti localhost:8000 dengan URL server jika sudah di-deploy.
 
----
-
-## 🔍 Test Endpoint
+🔍 Test Endpoint
 
 Endpoint untuk mengecek apakah API berjalan dengan baik.
 
-### **GET** `/test`
+GET /test
 
-| Parameter | Value |
-|-----------|-------|
-| **Auth** | ❌ No |
+Parameter	Value
+Auth	❌ No
 
-#### 📤 Response
+📤 Response
 
-```json
 {
   "status": "API working!",
   "timestamp": "2025-11-29T12:00:00"
 }
+
 👥 User API (Customer)
 📝 Register User
+
 Endpoint untuk mendaftarkan user baru.
 
 POST /user/register
+
 Parameter	Value
 Auth	❌ No
+
 📥 Request Body
-json
 
 {
   "name": "Daffa Audyvie",
@@ -55,8 +55,9 @@ json
   "password": "secret",
   "password_confirmation": "secret"
 }
+
+
 📤 Response
-json
 
 {
   "user": {
@@ -68,21 +69,25 @@ json
   },
   "token": "1|ssghN7CU1QfaWLiYm1U3YcyLsaHlCbabwsjIoyO9c4f041c8"
 }
+
 🔐 Login User
+
 Endpoint untuk login user yang sudah terdaftar.
 
 POST /user/login
+
 Parameter	Value
 Auth	❌ No
+
 📥 Request Body
-json
 
 {
   "email": "27daffa27@gmail.com",
   "password": "secret"
 }
+
+
 📤 Response
-json
 
 {
   "user": {
@@ -94,22 +99,30 @@ json
   },
   "token": "1|ssghN7CU1QfaWLiYm1U3YcyLsaHlCbabwsjIoyO9c4f041c8"
 }
+
 🚪 Logout User
+
 Endpoint untuk logout user.
 
 POST /user/logout
+
 Parameter	Value
 Auth	✅ Bearer token required
+
 📥 Headers
+
 Authorization: Bearer <your_token_here>
+
+
 📤 Response
-json
 
 {
   "message": "Logged out successfully"
 }
+
 👤 Profile Management
 📖 Get Profile
+
 Mendapatkan data profile user yang sedang login.
 
 GET /user/profile
@@ -117,21 +130,26 @@ GET /user/profile
 Parameter	Value
 Auth	✅ Bearer token required
 ✏️ Update Profile
+
 Mengupdate data profile user.
 
 PUT /user/profile
 
 Parameter	Value
 Auth	✅ Bearer token required
+
 📥 Request Body Example
-json
 
 {
   "name": "New Name",
   "email": "new@email.com"
 }
+
 🔧 Authentication
+
 Untuk endpoint yang memerlukan autentikasi, gunakan Bearer token di header:
 
 Authorization: Bearer <your_token_here>
+
+
 Token didapat dari response endpoint /user/register atau /user/login.
