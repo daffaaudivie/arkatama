@@ -58,6 +58,7 @@ Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(functi
     Route::resource('transactions', TransactionController::class);
     Route::resource('users', UserController::class);
     Route::resource('transaction-details', TransactionDetailController::class);
+    Route::post('/transactions/{transaction}/update-status', [TransactionController::class, 'updateStatus'])->name('transactions.update_status');
 });
 
 // Auth routes

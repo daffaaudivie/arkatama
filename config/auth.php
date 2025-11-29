@@ -1,34 +1,33 @@
 <?php
 
 return [
-
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Guards
-    |--------------------------------------------------------------------------
-    */
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
 
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+        ],
+
         'admin' => [
-            'driver' => 'session',   // harus session, bukan eloquent
-            'provider' => 'admins',  // pakai provider admins
+            'driver' => 'session',  
+            'provider' => 'admins',
+        ],
+
+        'admin-api' => [
+            'driver' => 'sanctum',   // Untuk API
+            'provider' => 'admins',
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | User Providers
-    |--------------------------------------------------------------------------
-    */
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
@@ -41,11 +40,6 @@ return [
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Resetting Passwords
-    |--------------------------------------------------------------------------
-    */
     'passwords' => [
         'users' => [
             'provider' => 'users',
@@ -62,10 +56,5 @@ return [
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Password Confirmation Timeout
-    |--------------------------------------------------------------------------
-    */
     'password_timeout' => 10800,
 ];

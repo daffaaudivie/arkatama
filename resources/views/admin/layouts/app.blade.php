@@ -65,7 +65,7 @@
                 </a>
 
                 <!-- Transactions -->
-                <a href="" 
+                <a href="{{ route('admin.transactions.index') }}"
                    class="flex items-center px-4 py-3 text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white
                           @if(request()->routeIs('transactions.*')) bg-gray-700 text-white @endif">
                     <span class="text-xl mr-3">💳</span>
