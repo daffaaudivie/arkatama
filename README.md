@@ -93,7 +93,7 @@ POST /user/logout
 Parameter	Value
 Auth	✅ Bearer token required
 📥 Headers
-Authorization: Bearer <your_token_here>
+Authorization: Bearer <your_token_here> contoh: Bearer 1|ssghN7CU1QfaWLiYm1U3YcyLsaHlCbabwsjIoyO9c4f041c8"
 📤 Response
 json
 {
