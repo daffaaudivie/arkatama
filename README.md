@@ -15,16 +15,26 @@
   - [👤 Profile Management](#-profile-management)
 
 ## 🌐 Base URL
+http://localhost:8000/api
+
+
 > **📝 Note:** Ganti `localhost:8000` dengan URL server jika sudah di-deploy.
-🔍 Test Endpoint
+
+---
+
+## 🔍 Test Endpoint
+
 Endpoint untuk mengecek apakah API berjalan dengan baik.
 
-GET /test
-Parameter	Value
-Auth	❌ No
-📤 Response
-json
+### **GET** `/test`
 
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
+
+#### 📤 Response
+
+```json
 {
   "status": "API working!",
   "timestamp": "2025-11-29T12:00:00"
@@ -92,9 +102,6 @@ Parameter	Value
 Auth	✅ Bearer token required
 📥 Headers
 Authorization: Bearer <your_token_here>
-Contoh:
-
-Authorization: Bearer 1|ssghN7CU1QfaWLiYm1U3YcyLsaHlCbabwsjIoyO9c4f041c8
 📤 Response
 json
 
@@ -106,22 +113,14 @@ json
 Mendapatkan data profile user yang sedang login.
 
 GET /user/profile
+
 Parameter	Value
 Auth	✅ Bearer token required
-📤 Response
-json
-
-{
-  "id": 2,
-  "name": "Daffa Audyvie",
-  "email": "27daffa27@gmail.com",
-  "created_at": "...",
-  "updated_at": "..."
-}
 ✏️ Update Profile
 Mengupdate data profile user.
 
 PUT /user/profile
+
 Parameter	Value
 Auth	✅ Bearer token required
 📥 Request Body Example
@@ -130,16 +129,6 @@ json
 {
   "name": "New Name",
   "email": "new@email.com"
-}
-📤 Response
-json
-
-{
-  "id": 2,
-  "name": "New Name",
-  "email": "new@email.com",
-  "created_at": "...",
-  "updated_at": "..."
 }
 🔧 Authentication
 Untuk endpoint yang memerlukan autentikasi, gunakan Bearer token di header:
