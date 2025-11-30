@@ -9,6 +9,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionDetailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DashboardController;
 
 // Homepage
 Route::get('/', function () {
@@ -20,9 +21,7 @@ Route::get('/', function () {
 // ----------------------------
 Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     // Dashboard
-    Route::get('/dashboard', function () {
-        return view('user.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Products for user
     Route::resource('products', ProductController::class)
@@ -33,6 +32,9 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     ->name('transactions.confirm_payment');
     Route::post('transactions/{transaction}/upload_payment', [TransactionController::class, 'uploadPayment'])
     ->name('user.transactions.upload_payment');
+    Route::get('/transactions/{transaction}/product-detail', 
+        [TransactionController::class, 'productDetailUser'])
+        ->name('transactions.product_detail');
 
     // Profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,9 +55,7 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
 // ----------------------------
 Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(function () {
     // Dashboard
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+     Route::get('/dashboard', [DashboardController::class, 'adminIndex'])->name('dashboard');
 
     // CRUD resources
     Route::resource('products', ProductController::class);
@@ -65,6 +65,9 @@ Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(functi
     Route::resource('users', UserController::class);
     Route::resource('transaction-details', TransactionDetailController::class);
     Route::post('/transactions/{transaction}/update-status', [TransactionController::class, 'updateStatus'])->name('transactions.update_status');
+    Route::get('/transactions/{transaction}/product-detail', 
+        [TransactionController::class, 'productDetail'])
+        ->name('transactions.product_detail');
 });
 
 // Auth routes

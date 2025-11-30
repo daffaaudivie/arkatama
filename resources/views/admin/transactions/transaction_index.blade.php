@@ -94,13 +94,16 @@
                                 <div class="flex items-center justify-center space-x-2">
 
                                     <!-- View Details -->
-                                    <a href="{{ route('admin.transactions.show', $transaction->id) }}" 
-                                       class="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-200 shadow-sm hover:shadow-md font-medium text-sm">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                        Details
-                                    </a>
+                                    <a href="{{ route('admin.transactions.product_detail', $transaction->id) }}"
+                                        class="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow-md text-sm">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                    d="M3 7h18M3 12h18M3 17h18"/>
+                                            </path>
+                                            </svg>
+                                            Details
+                                        </a>
+
 
                                     <!-- Change Status -->
                                     <form action="{{ route('admin.transactions.update_status', $transaction->id) }}" method="POST" class="flex items-center gap-2">

@@ -132,5 +132,18 @@ class TransactionController extends Controller
             ->route('user.transactions.index')
             ->with('success', 'Payment proof uploaded successfully! Waiting for verification.');
     }
+    public function productDetail(Transaction $transaction)
+    {
+        $transaction->load('details.product', 'user');
+
+        return view('admin.transactions.transaction_detail', compact('transaction'));
+    }
+    public function productDetailUser(Transaction $transaction)
+    {
+        $transaction->load('details.product', 'user');
+
+        return view('user.transactions.transaction_detail', compact('transaction'));
+    }
+
 
 }

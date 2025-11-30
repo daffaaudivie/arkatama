@@ -16,7 +16,6 @@ class ProductController extends Controller
             $products = Product::with('category')->paginate(10);
             return view('admin.products.product_index', compact('products'));
         } else {
-            // User sees product list with search and filter
             $query = Product::with('category');
 
             // Search by name

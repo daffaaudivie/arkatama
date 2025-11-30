@@ -21,13 +21,13 @@
      x-transition.opacity></div>
 
 <!-- Sidebar -->
-<aside :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen}"
-       class="fixed top-0 left-0 h-full w-72 bg-gradient-to-b from-gray-800 to-gray-900 z-30 transition-transform duration-300 shadow-2xl">
+<aside :class="{'translate-x-0': mobileMenuOpen, '-translate-x-full': !mobileMenuOpen}"
+       class="fixed top-0 left-0 h-full w-72 bg-gradient-to-b from-gray-800 to-gray-900 z-30 transition-transform duration-300 shadow-2xl lg:translate-x-0">
 
     <!-- Sidebar Header -->
     <div class="flex items-center justify-between px-6 py-6 border-b border-gray-700/50">
         <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-700 rounded-lg flex items-center justify-center">
+            <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-green-700 rounded-lg flex items-center justify-center">
                 <i class="fas fa-store text-white text-lg"></i>
             </div>
             <h2 class="text-xl font-bold text-white">User Panel</h2>
@@ -75,7 +75,7 @@
             </a>
 
             <!-- Profile -->
-            <a href=""
+            <a href="{{ route('user.profile.edit') }}"
                class="flex items-center px-4 py-3 text-gray-300 rounded-xl hover:bg-gray-700/50 hover:text-white transition-all duration-200 group
                @if(request()->routeIs('user.profile')) bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg @endif">
                 <div class="w-8 h-8 flex items-center justify-center mr-3 rounded-lg bg-gray-700 group-hover:bg-gray-600 transition-colors">
@@ -103,16 +103,16 @@
 </aside>
 
 <!-- Main Content -->
-<div :class="{'lg:ml-72': sidebarOpen, 'lg:ml-0': !sidebarOpen}" class="transition-all duration-300">
+<div class="lg:ml-72 transition-all duration-300">
 
     <!-- Top Bar -->
-    <header class="bg-gradient-to-r from-green-500 to-green-800 shadow-lg sticky top-0 z-10">
+    <header class="bg-gradient-to-r from-green-500 to-blue-700 shadow-lg sticky top-0 z-10">
         <div class="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
 
             <!-- Left -->
             <div class="flex items-center space-x-4">
-                <button @click="sidebarOpen = !sidebarOpen; mobileMenuOpen = !mobileMenuOpen"
-                        class="text-white hover:text-blue-200 text-2xl transition-colors">
+                <button @click="mobileMenuOpen = !mobileMenuOpen"
+                        class="text-white hover:text-blue-200 text-2xl transition-colors lg:hidden">
                     <i class="fas fa-bars"></i>
                 </button>
 

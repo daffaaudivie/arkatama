@@ -70,7 +70,7 @@
                                 @else
 
                                     <a href="{{ route('user.transactions.confirm_payment', $transaction->id) }}"
-                                        class="inline-flex items-center gap-2 px-5 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-all duration-200 shadow font-medium text-sm">
+                                        class="inline-flex items-center gap-2 px-5 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-600 transition-all duration-200 shadow font-medium text-sm">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                                         </svg>
@@ -80,7 +80,7 @@
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap text-center">
-                                <a href="{{ route('user.transactions.show', $transaction->id) }}" 
+                                <a href="{{ route('user.transactions.product_detail', $transaction->id) }}"
                                     class="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-200 shadow-sm hover:shadow-md font-medium text-sm">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -162,7 +162,7 @@
 
                     <!-- Details Button -->
                     <div>
-                        <a href="{{ route('user.transactions.show', $transaction->id) }}" 
+                        <a href="{{ route('user.transactions.product_detail', $transaction->id) }}"
                             class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-200 shadow-sm font-medium">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
