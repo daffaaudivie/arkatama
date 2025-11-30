@@ -464,15 +464,11 @@ Mengupdate produk yang sudah ada (Admin only).
 ### PUT/ api/admin/product/{id}
 #### Parameters:id (integer, required) - ID produk yang ingin diupdate
 #### Content-Type: multipart/form-data Authorization: Bearer {your-admin-token}
-#### 📤 Request Body (Form Data)
+#### 📤 Contoh: Mengubah nama dan stock produck (Request Body json) 
 ```json
 {
-  name: "Updated Laptop Gaming" (optional)
-    description: "Updated high-performance gaming laptop" (optional)
-    price: 18000000 (optional)
-    category_id: 2 (optional)
-    stock: 30 (optional)
-    image: (file upload - optional, max 4MB)
+  "name": "Lego City For Kids",
+  "stock": "100"
 }
 ```
 #### 📥 Response (Contoh)
@@ -481,21 +477,32 @@ Mengupdate produk yang sudah ada (Admin only).
     {
     "message": "Produk berhasil diperbarui",
     "product": {
-        "id": 1,
-        "name": "Updated Laptop Gaming",
-        "description": "Updated high-performance gaming laptop",
-        "price": 18000000,
-        "category_id": 2,
-        "stock": 30,
-        "image": "1640995500_updated_laptop.jpg",
-        "created_at": "2024-01-01T12:00:00.000000Z",
-        "updated_at": "2024-01-01T14:30:00.000000Z"
+        "id": 2,
+        "category_id": 5,
+        "name": "Lego City For Kids",
+        "image": "1764138732_lego_classic.png",
+        "description": "Lego Classic for kids 7+",
+        "price": "500000.00",
+        "stock": 100,
+        "created_at": "2025-11-26T06:32:12.000000Z",
+        "updated_at": "2025-11-30T04:46:33.000000Z"
     }
-}
 }
 ]
 ```
-
+### 3. 🗑️ Delete Product
+Menghapus produk berdasarkan ID (Admin only).
+### DELETE /admin/product/{id}
+#### Parameters: id (integer, required) - ID produk yang ingin dihapus
+#### Headers: Content-Type: application/json Authorization: Bearer {you-admin-token}
+#### 📥 Response Success (200)
+```json
+[
+   {
+    "message": "Produk berhasil dihapus"
+}
+]
+```
 
 
 
