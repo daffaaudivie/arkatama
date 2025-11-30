@@ -255,6 +255,7 @@ Content-Type: application/json
 ```
 
 #### 📥 Response 
+```json
 {
   "message": "Kategori berhasil dibuat",
   "category": {
@@ -266,3 +267,82 @@ Content-Type: application/json
   }
 }
 ```
+
+### 🔍 Admin Get Category by ID
+Mendapatkan detail kategori berdasarkan ID untuk admin.
+### GET api/admin/categories/{id}
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Admin Bearer token required |
+### 📥 URL Parameters
+| Paramater | Type | Paramater | 
+|-----------|-------|-----------|
+| **id** | integer| ID Kategori yang ingin ditampilkan|
+### 📥 Headers
+Authorization: Bearer <admin_token_here>
+Content-Type: application/json
+### 📤 Response (Success)
+```json
+{
+  "id": 1,
+  "name": "Electronics",
+  "description": "Electronic devices and gadgets",
+  "created_at": "2024-01-01T10:00:00.000000Z",
+  "updated_at": "2024-01-01T10:00:00.000000Z"
+}
+```
+
+### ✏️ Update Category
+Mengupdate data kategori yang sudah ada.
+### PUT /admin/categories/{id}
+### GET api/admin/categories/{id}
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Admin Bearer token required |
+### 📥 URL Parameters
+| Paramater | Type | Paramater | 
+|-----------|-------|-----------|
+| **id** | integer| ID Kategori yang ingin diedit|
+### 📥 Headers
+Authorization: Bearer <admin_token_here>
+Content-Type: application/json
+### 📤 Request
+```json
+{
+  "name": "Updated Electronics",
+  "description": "Updated description for electronics"
+}
+```
+### 📤 Response (Success)
+```json
+{
+  "message": "Kategori berhasil diperbarui",
+  "category": {
+    "id": 1,
+    "name": "Updated Electronics",
+    "description": "Updated description for electronics",
+    "created_at": "2024-01-01T10:00:00.000000Z",
+    "updated_at": "2024-01-01T11:00:00.000000Z"
+  }
+}
+```
+### 🗑️ Delete Category
+Menghapus kategori berdasarkan ID.
+### DELETE api/admin/categories/{id}
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Admin Bearer token required |
+### 📥 URL Parameters
+| Paramater | Type | Paramater | 
+|-----------|-------|-----------|
+| **id** | integer| ID Kategori yang ingin dihapus|
+### 📥 Headers
+Authorization: Bearer <admin_token_here>
+### 📤 Response (Success)
+```json
+{
+  "message": "Kategori berhasil dihapus"
+}
+```
+
+
