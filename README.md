@@ -30,7 +30,7 @@ Endpoint untuk mengecek apakah API berjalan dengan baik.
 
 #### 📤 Response
 
-#### 👥 User API (Customer)
+## 👥 User API (Customer)
 
 ### 📝 Register User
 Endpoint untuk mendaftarkan user baru.
@@ -51,7 +51,7 @@ Endpoint untuk mendaftarkan user baru.
 "password_confirmation": "secret"
 }
 ```
-## 📤 Response
+### 📤 Response
 ```json
 
 {
@@ -72,7 +72,7 @@ Endpoint untuk login user yang sudah terdaftar.
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ❌ No |
-## 📥 Request Body
+### 📥 Request Body
 
 ```json
 {
@@ -80,7 +80,7 @@ Endpoint untuk login user yang sudah terdaftar.
 "password": "secret"
 }
 ```
-## 📤 Response
+### 📤 Response
 
 ```json
 
@@ -98,7 +98,7 @@ Endpoint untuk login user yang sudah terdaftar.
 
 ### 🚪 Logout User
 Endpoint untuk logout user.
-## DELETE /user/logout
+### DELETE /user/logout
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ✅ Bearer token required |
@@ -112,17 +112,19 @@ Authorization: Bearer <your_token_here> Contoh: Bearer 1|ssghN7CU1QfaWLiYm1U3Ycy
 }
 ```
 
-#### 👤 Profile Management
+## 👤 Profile Management
 ### 📖 Get Profile
 Mendapatkan data profile user yang sedang login.
-## GET /user/profile
+### GET /user/profile
+
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ✅ Bearer token required |
 
-## ✏️ Update Profile
+### ✏️ Update Profile
 Mengupdate data profile user.
-## PUT /user/profile
+### PUT /user/profile
+
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ✅ Bearer token required |
@@ -136,8 +138,39 @@ Mengupdate data profile user.
 }
 ```
 
-### 🔧 Authentication
-Untuk endpoint yang memerlukan autentikasi, gunakan Bearer token di header:
+## 🔧 Authentication
+### Untuk endpoint yang memerlukan autentikasi, gunakan Bearer token di header:
 
-## Authorization: Bearer <your_token_here>
-Token didapat dari response endpoint /user/register atau /user/login.
+Authorization: Bearer <your_token_here>
+Token didapat dari response endpoint /admin/login atau /user/login.
+
+## 👥 Admin API (Admin)
+### 🔐 Login Admin
+Endpoint untuk login user yang sudah terdaftar.
+### POST /admin/login
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
+### 📥 Request Body
+
+```json
+{
+"email": "daffa.audivie27@com",
+"password": "audivie45072"
+}
+```
+### 📤 Response
+
+```json
+
+{
+    "admin": {
+        "id": 1,
+        "name": "Admin 01",
+        "email": "daffa.audivie27@gmail.com",
+        "created_at": "2025-11-26T02:31:45.000000Z",
+        "updated_at": "2025-11-26T02:31:45.000000Z"
+    },
+    "token": "12|XaCTVnqknmzb8EkOFLlbiRfXfPS7cGCRvAriSLOb29762d16"
+}
+```
