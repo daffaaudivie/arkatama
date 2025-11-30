@@ -50,7 +50,7 @@ Endpoint untuk mendaftarkan user baru.
 |-----------|-------|
 | **Auth** | ❌ No |
 
-### 📥 Request Body
+#### 📥 Request Body
 
 ```json
 
@@ -61,7 +61,7 @@ Endpoint untuk mendaftarkan user baru.
 "password_confirmation": "secret"
 }
 ```
-### 📤 Response
+#### 📤 Response
 ```json
 
 {
@@ -82,7 +82,7 @@ Endpoint untuk login user yang sudah terdaftar.
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ❌ No |
-### 📥 Request Body
+#### 📥 Request Body
 
 ```json
 {
@@ -90,7 +90,7 @@ Endpoint untuk login user yang sudah terdaftar.
 "password": "secret"
 }
 ```
-### 📤 Response
+#### 📤 Response
 
 ```json
 
@@ -112,9 +112,9 @@ Endpoint untuk logout user.
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ✅ Bearer token required |
-## 📥 Headers
+#### 📥 Headers
 Authorization: Bearer <your_token_here> Contoh: Bearer 1|ssghN7CU1QfaWLiYm1U3YcyLsaHlCbabwsjIoyO9c4f041c8
-## 📤 Response
+#### 📤 Response
 ```json
 
 {
@@ -138,7 +138,7 @@ Mengupdate data profile user.
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ✅ Bearer token required |
-## 📥 Request Body Example
+#### 📥 Request Body Example
 
 ```json
 
@@ -161,7 +161,7 @@ Endpoint untuk login user yang sudah terdaftar.
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ❌ No |
-### 📥 Request Body
+#### 📥 Request Body
 
 ```json
 {
@@ -169,7 +169,7 @@ Endpoint untuk login user yang sudah terdaftar.
 "password": "audivie45072"
 }
 ```
-### 📤 Response
+#### 📤 Response
 
 ```json
 
@@ -194,7 +194,7 @@ Mendapatkan semua data kategori yang tersedia.
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ❌ No |
-### 📥 Response
+#### 📥 Response
 
 ```json
 {
@@ -224,7 +224,7 @@ Mendapatkan detail kategori berdasarkan ID.
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ❌ No |
-### 📥 Response
+#### 📥 Response
 
 ```json
 {
@@ -281,14 +281,14 @@ Mendapatkan detail kategori berdasarkan ID untuk admin.
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ✅ Admin Bearer token required |
-### 📥 URL Parameters
+#### 📥 URL Parameters
 | Paramater | Type | Paramater | 
 |-----------|-------|-----------|
 | **id** | integer| ID Kategori yang ingin ditampilkan|
-### 📥 Headers
+#### 📥 Headers
 Authorization: Bearer <admin_token_here>
 Content-Type: application/json
-### 📤 Response (Success)
+#### 📤 Response (Success)
 ```json
 {
   "id": 1,
@@ -301,26 +301,25 @@ Content-Type: application/json
 
 ### ✏️ Update Category
 Mengupdate data kategori yang sudah ada.
-### PUT /admin/categories/{id}
-### GET api/admin/categories/{id}
+### PUT api/admin/category/{id}
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ✅ Admin Bearer token required |
-### 📥 URL Parameters
+#### 📥 URL Parameters
 | Paramater | Type | Paramater | 
 |-----------|-------|-----------|
 | **id** | integer| ID Kategori yang ingin diedit|
-### 📥 Headers
+#### 📥 Headers
 Authorization: Bearer <admin_token_here>
 Content-Type: application/json
-### 📤 Request
+#### 📤 Request
 ```json
 {
   "name": "Updated Electronics",
   "description": "Updated description for electronics"
 }
 ```
-### 📤 Response (Success)
+#### 📤 Response (Success)
 ```json
 {
   "message": "Kategori berhasil diperbarui",
@@ -351,5 +350,67 @@ Authorization: Bearer <admin_token_here>
   "message": "Kategori berhasil dihapus"
 }
 ```
+
+## 📦 Product API Documentation
+Dokumentasi lengkap untuk API management produk dengan akses admin dan public.
+## 🌍 Public Endpoints (Tidak Perlu Login)
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
+### 📖 Get All Products
+Mendapatkan daftar semua produk (akses publik).
+#### 📥 Response (Contoh)
+```json
+[
+    {
+        "id": 1,
+        "name": "Laptop Gaming",
+        "description": "High-performance gaming laptop",
+        "price": 15000000,
+        "category_id": 1,
+        "stock": 25,
+        "image": "1640995200_laptop.jpg",
+        "created_at": "2024-01-01T12:00:00.000000Z",
+        "updated_at": "2024-01-01T12:00:00.000000Z"
+    },
+    {
+        "id": 2,
+        "name": "Smartphone",
+        "description": "Latest flagship smartphone",
+        "price": 8000000,
+        "category_id": 2,
+        "stock": 50,
+        "image": "1640995300_phone.jpg",
+        "created_at": "2024-01-01T12:00:00.000000Z",
+        "updated_at": "2024-01-01T12:00:00.000000Z"
+    }
+]
+```
+### 🔍 Get Single Product
+Mendapatkan detail produk berdasarkan ID (akses publik).
+### GET /product/{id}
+##### Parameters: id (integer, required) - ID produk yang ingin ditampilkan
+##### Headers: Content-Type: application/json
+#### 📥 Response (Contoh)
+```json
+[
+    {
+    "id": 1,
+    "name": "Laptop Gaming",
+    "description": "High-performance gaming laptop",
+    "price": 15000000,
+    "category_id": 1,
+    "stock": 25,
+    "image": "1640995200_laptop.jpg",
+    "created_at": "2024-01-01T12:00:00.000000Z",
+    "updated_at": "2024-01-01T12:00:00.000000Z"
+}
+]
+
+
+
+
+
+
 
 
