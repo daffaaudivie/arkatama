@@ -612,6 +612,82 @@ Mendapatkan semua transaksi milik user yang sedang login.
 ]
 ```
 
+## 🔑 Admin Endpoints (Perlu Login)
+Dokumentasi lengkap untuk API management transaksi dengan akses admin yang memerlukan autentikasi.
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Admin Bearer token required |
+### 1.📋 Get All Transactions
+Mendapatkan semua transaksi dalam sistem.
+### GET /admin/transactions
+##### Headers: Content-Type: application/json, Authorization: Bearer {admin-token}
+#### 📥 Response 
+```json
+[
+   {
+    "success": true,
+    "message": "List semua transaksi",
+    "data": [
+        {
+            "id": 1,
+            "user_id": 2,
+            "total_price": "25000000.00",
+            "status": "pending",
+            "payment_proof": "payment_proofs/1640995500_abc123.jpg",
+            "created_at": "2024-01-01T15:30:00.000000Z",
+            "updated_at": "2024-01-01T15:30:00.000000Z",
+            "user": {
+                "id": 2,
+                "name": "John Doe",
+                "email": "john@example.com",
+                "phone": "08123456789"
+            },
+            "details": [
+                {
+                    "id": 1,
+                    "transaction_id": 1,
+                    "product_id": 1,
+                    "quantity": 2,
+                    "price_per_item": "15000000.00",
+                    "subtotal": "30000000.00",
+                    "created_at": "2024-01-01T15:30:00.000000Z",
+                    "updated_at": "2024-01-01T15:30:00.000000Z",
+                    "product": {
+                        "id": 1,
+                        "name": "Laptop Gaming ROG",
+                        "description": "High-performance gaming laptop",
+                        "price": "15000000.00",
+                        "stock": 3,
+                        "category_id": 1,
+                        "image": "laptops/1640995200_laptop.jpg"
+                    }
+                }
+            ]
+        }
+    ]
+}
+]
+```
+
+### 2. 🗑️ Delete Transaction
+Menghapus transaksi dan mengembalikan stok produk.
+### DELETE /admin/transactions/{id}
+### Path Parameters: id (integer, required) - ID transaksi
+##### Headers: Content-Type: application/json, Authorization: Bearer {admin-token}
+#### 📥 Response 
+```json
+[
+   {
+    "success": true,
+    "message": "List semua transaksi",
+    "data": [
+        {
+    "success": true,
+    "message": "Transaksi berhasil dihapus"
+}
+]
+```
+
 
 
 
