@@ -14,8 +14,15 @@
   - [🚪 Logout User](#-logout-user)
   - [👤 Profile Management](#-profile-management)
 - [👥 Admin API (Admin)](#-admin-api-customer)
-  - [🔐 Login User](#-login-user)
+  - [🔐 Login Admin](#-login-admin)
 - [📖 Category API (Category)](#-category-api-customer)
+   - [🌍 Public Endpoints](#-public-endpoints)
+     - [📑 Get All Categories](#-get-all-categories)
+     - [🔍 Get Single Category](#-get-single-category)
+   - [🔒 Admin Endpoints](#-admin-endpoints)
+     - [➕ Create Category](#-create-category)
+     - [✏️ Update Category](#-update-category)
+     - [🗑️ Delete Category](#-delete-category)
 
 ## 🌐 Base URL
 http://localhost:8000/api
