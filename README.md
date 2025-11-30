@@ -37,7 +37,7 @@ Endpoint untuk mengecek apakah API berjalan dengan baik.
 }
 ```
 
-##👥 User API (Customer)
+###👥 User API (Customer)
 📝 Register User
 Endpoint untuk mendaftarkan user baru.
 
