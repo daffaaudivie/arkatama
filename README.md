@@ -517,8 +517,101 @@ Dokumentasi lengkap untuk API management transaksi dengan akses user yang memerl
 
 ### 1. 🛒 Create Transaction
 Membuat transaksi baru dengan multiple items.
-### POST api/user/transactions
+### POST api/transactions
 #### Headers: Content-Type: application/json Authorization: Bearer {your-user-token}
+#### 📥 Request Body-form
+```json
+[
+   {
+    "items": "[{"product_id":2, "quantity":1}, {"product_id":3, "quantity":1}]"
+    "image": "test.jpg"
+}
+]
+```
+#### 📥 Response 
+```json
+[
+   {
+    "success": true,
+    "message": "Transaksi berhasil dibuat",
+    "data": {
+        "transaction_id": 33,
+        "total_price": 10000000,
+        "status": "pending",
+        "payment_proof": "http://127.0.0.1:8000/storage/payment_proofs/1764481401_692bd979caf54.png",
+        "created_at": "30 Nov 2025 05:43",
+        "items": [
+            {
+                "product_name": "Lego City For Kids",
+                "quantity": 1,
+                "price_per_item": "500000.00",
+                "subtotal": "500000.00"
+            },
+            {
+                "product_name": "Acer Aspire 7 Pro",
+                "quantity": 1,
+                "price_per_item": "9500000.00",
+                "subtotal": "9500000.00"
+            }
+        ]
+    }
+}
+]
+```
+### 2. 📋 Get My Transactions
+Mendapatkan semua transaksi milik user yang sedang login.
+### GET /transactions/my
+#### Headers: Content-Type: application/json, Authorization: Bearer {your-user-token}
+#### 📥 Response 
+```json
+[
+   {
+    "success": true,
+    "message": "Transaksi saya",
+    "data": [
+        {
+            "id": 33,
+            "user_id": 2,
+            "total_price": "10000000.00",
+            "payment_proof": "payment_proofs/1764481401_692bd979caf54.png",
+            "status": "pending",
+            "created_at": "2025-11-30T05:43:21.000000Z",
+            "updated_at": "2025-11-30T05:43:21.000000Z",
+            "user": {
+                "id": 2,
+                "name": "Daffa Audyvie",
+                "email": "27daffa27@gmail.com",
+                "email_verified_at": null,
+                "created_at": "2025-11-26T02:51:58.000000Z",
+                "updated_at": "2025-11-26T02:51:58.000000Z"
+            },
+            "details": [
+                {
+                    "id": 32,
+                    "transaction_id": 33,
+                    "product_id": 2,
+                    "quantity": 1,
+                    "price_per_item": "500000.00",
+                    "subtotal": "500000.00",
+                    "created_at": "2025-11-30T05:43:21.000000Z",
+                    "updated_at": "2025-11-30T05:43:21.000000Z",
+                    "product": {
+                        "id": 2,
+                        "category_id": 5,
+                        "name": "Lego City For Kids",
+                        "image": "1764138732_lego_classic.png",
+                        "description": "Lego Classic for kids 7+",
+                        "price": "500000.00",
+                        "stock": 93,
+                        "created_at": "2025-11-26T06:32:12.000000Z",
+                        "updated_at": "2025-11-30T05:43:21.000000Z"
+                    }
+                }
+}
+}
+]
+```
+
 
 
 
