@@ -37,7 +37,7 @@ Endpoint untuk mengecek apakah API berjalan dengan baik.
 
 ### 📝 Register User
 Endpoint untuk mendaftarkan user baru.
-### POST /user/register
+### POST api/user/register
 
 | Parameter | Value |
 |-----------|-------|
@@ -71,7 +71,7 @@ Endpoint untuk mendaftarkan user baru.
 
 ### 🔐 Login User
 Endpoint untuk login user yang sudah terdaftar.
-### POST /user/login
+### POST api/user/login
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ❌ No |
@@ -101,7 +101,7 @@ Endpoint untuk login user yang sudah terdaftar.
 
 ### 🚪 Logout User
 Endpoint untuk logout user.
-### DELETE /user/logout
+### DELETE api/user/logout
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ✅ Bearer token required |
@@ -118,7 +118,7 @@ Authorization: Bearer <your_token_here> Contoh: Bearer 1|ssghN7CU1QfaWLiYm1U3Ycy
 ## 👤 Profile Management
 ### 📖 Get Profile
 Mendapatkan data profile user yang sedang login.
-### GET /user/profile
+### GET api/user/profile
 
 | Parameter | Value |
 |-----------|-------|
@@ -126,7 +126,7 @@ Mendapatkan data profile user yang sedang login.
 
 ### ✏️ Update Profile
 Mengupdate data profile user.
-### PUT /user/profile
+### PUT api/user/profile
 
 | Parameter | Value |
 |-----------|-------|
@@ -150,7 +150,7 @@ Token didapat dari response endpoint /admin/login atau /user/login.
 ## 👥 Admin API (Admin)
 ### 🔐 Login Admin
 Endpoint untuk login user yang sudah terdaftar.
-### POST /admin/login
+### POST api/admin/login
 | Parameter | Value |
 |-----------|-------|
 | **Auth** | ❌ No |
@@ -179,4 +179,90 @@ Endpoint untuk login user yang sudah terdaftar.
 ```
 
 ## 📖 Category API (Admin)
+## 👀 Public Category Endpoints
+Endpoint untuk mengakses data kategori tanpa perlu autentikasi.
+### 📋 Get All Categories
+Mendapatkan semua data kategori yang tersedia.
+#### **GET** `api/category`
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
+### 📥 Response
 
+```json
+{
+  "success": true,
+  "message": "List all categories",
+  "data": [
+    {
+      "id": 1,
+      "name": "Electronics",
+      "description": "Electronic devices and gadgets",
+      "created_at": "2024-01-01T10:00:00.000000Z",
+      "updated_at": "2024-01-01T10:00:00.000000Z"
+    },
+    {
+      "id": 2,
+      "name": "Fashion",
+      "description": "Clothing and accessories",
+      "created_at": "2024-01-01T10:00:00.000000Z",
+      "updated_at": "2024-01-01T10:00:00.000000Z"
+    }
+  ]
+}
+```
+### 🔍 Get Category by ID
+Mendapatkan detail kategori berdasarkan ID.
+### GET api/category/{id}
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
+### 📥 Response
+
+```json
+{
+  "success": true,
+  "message": "Detail Category",
+  "data": {
+    "id": 1,
+    "name": "Electronics",
+    "description": "Electronic devices and gadgets",
+    "created_at": "2024-01-01T10:00:00.000000Z",
+    "updated_at": "2024-01-01T10:00:00.000000Z"
+  }
+}
+```
+## 🔐 Admin Category Management (Perlu Login Admin)
+Endpoint untuk mengelola kategori (CRUD) yang memerlukan autentikasi admin.
+
+### ➕ Create New Category
+Meanmbahkan data kategori untuk admin.
+### GET api/admin/category
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Admin Bearer token required |
+
+#### 📥 Headers
+Authorization: Bearer <admin_token_here>
+Content-Type: application/json
+
+#### 📥 Request Body (Contoh)
+```json
+{
+  "name": "Books",
+  "description": "Books and educational materials"
+}
+```
+
+#### 📥 Response 
+{
+  "message": "Kategori berhasil dibuat",
+  "category": {
+    "id": 3,
+    "name": "Books",
+    "description": "Books and educational materials",
+    "created_at": "2024-01-01T10:00:00.000000Z",
+    "updated_at": "2024-01-01T10:00:00.000000Z"
+  }
+}
+```
