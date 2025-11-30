@@ -504,6 +504,23 @@ Menghapus produk berdasarkan ID (Admin only).
 ]
 ```
 
+## 📊 Transaction API Documentation
+Dokumentasi API untuk manajemen transaksi yang memerlukan login user.
+## 🔑 User Endpoints (Perlu Login)
+Dokumentasi lengkap untuk API management transaksi dengan akses user yang memerlukan autentikasi.
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ User Bearer token required |
+
+### 1. 🛒 Create Transaction
+Membuat transaksi baru dengan multiple items.
+### POST api/user/transactions
+#### Headers: Content-Type: application/json Authorization: Bearer {your-user-token}
+
+
+
+
+
 
 
 
