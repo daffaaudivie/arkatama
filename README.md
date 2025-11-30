@@ -693,6 +693,7 @@ Memperbarui hanya status transaksi tanpa mengubah payment proof.
 ### PATCH /admin/transactions/{id}/status
 #### Path Parameters: id (integer, required) - ID transaksi
 #### Headers:Content-Type: application/json, Authorization: Bearer {admin-token}
+#### 📤 Response
 ```json
 [
    {
@@ -750,7 +751,7 @@ Memperbarui hanya status transaksi tanpa mengubah payment proof.
                     "category_id": 1,
                     "name": "Acer Aspire 7 Pro",
                     "image": "1764301766_LP02179.jpg",
-                    "description": "Aspire 7 Pro (A715-59G-57YQ) :\r\n\r\n- Processor : 13th Generation Intel Core i5-13420H Processor\r\n- Memory ; 1x8GB DDR4 3200MHz + 1 Slot Kosong, max up to 32GB (16+16)\r\n- Storage : 512GB PCIe NVMe M.2 SSD + 1 Slot Kosong, max up to 2TB (1TB+1TB)\r\n- Graphic Card : NVIDIA GeForce RTX 3050 with 6GB of GDDR6 (MGP 75W)\r\n- Display : 15.6 inch Full HD IPS (1920 x 1080),144Hz refresh rate, IPS, 300nits\r\n- Keyboard : Single Zone (RGB)\r\n- Wifi : Wi-Fi 6 & Bluetooth 5.0\r\n- Camera : 720p\r\n- Weight : 2.1kg\r\n- Battery : 53Wh\r\n- Power Adaptor : 150 W\r\n- OS : Windows 11 Home Single Language + Office Home Student 2024\r\n- Bonus : Backpack ACER Original",
+                    "description": "Tes"
                     "price": "9500000.00",
                     "stock": 12,
                     "created_at": "2025-11-28T03:49:27.000000Z",
