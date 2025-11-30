@@ -50,9 +50,9 @@ Endpoint untuk mendaftarkan user baru.
 "password": "secret",
 "password_confirmation": "secret"
 }
-
-📤 Response
-json
+```
+## 📤 Response
+```json
 
 {
 "user": {
@@ -68,19 +68,21 @@ json
 
 ### 🔐 Login User
 Endpoint untuk login user yang sudah terdaftar.
+### POST /user/login
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
+## 📥 Request Body
 
-POST /user/login
-Parameter Value
-Auth ❌ No
-📥 Request Body
 ```json
-
 {
 "email": "27daffa27@gmail.com",
 "password": "secret"
 }
-📤 Response
-json
+```
+## 📤 Response
+
+```json
 
 {
 "user": {
@@ -94,15 +96,15 @@ json
 }
 ```
 
-##🚪 Logout User
+### 🚪 Logout User
 Endpoint untuk logout user.
-
-POST /user/logout
-Parameter Value
-Auth ✅ Bearer token required
-📥 Headers
-Authorization: Bearer <your_token_here>
-📤 Response
+## DELETE /user/logout
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Bearer token required |
+## 📥 Headers
+Authorization: Bearer <your_token_here> Contoh: Bearer 1|ssghN7CU1QfaWLiYm1U3YcyLsaHlCbabwsjIoyO9c4f041c8
+## 📤 Response
 ```json
 
 {
@@ -110,7 +112,7 @@ Authorization: Bearer <your_token_here>
 }
 ```
 
-##👤 Profile Management
+### 👤 Profile Management
 📖 Get Profile
 Mendapatkan data profile user yang sedang login.
 
