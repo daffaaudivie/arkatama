@@ -29,7 +29,7 @@ class TransactionController extends Controller
         $transactions = Transaction::with('details')
             ->where('user_id', Auth::id())   // hanya transaksi user login
             ->latest()
-            ->paginate(12);
+            ->paginate(10);
 
         return view('user.transactions.transaction_index', compact('transactions'));
     }
@@ -97,5 +97,40 @@ class TransactionController extends Controller
         return redirect()
             ->route('admin.transactions.index')
             ->with('success', 'Transaksi berhasil dihapus');
+
     }
+    public function confirmPayment(Transaction $transaction)
+    {
+        // Pastikan hanya pemilik transaksi yang bisa akses
+        if ($transaction->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized');
+        }
+
+        return view('user.transactions.confirm_payment', compact('transaction'));
+    }
+
+    public function uploadPayment(Request $request, Transaction $transaction)
+    {
+        if ($transaction->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized');
+        }
+
+        $request->validate([
+            'payment_proof' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        // Upload file
+        $file = $request->file('payment_proof');
+        $path = $file->store('payment_proofs', 'public');
+
+        $transaction->update([
+            'payment_proof' => $path,
+            'status'        => 'pending'
+        ]);
+
+        return redirect()
+            ->route('user.transactions.index')
+            ->with('success', 'Payment proof uploaded successfully! Waiting for verification.');
+    }
+
 }

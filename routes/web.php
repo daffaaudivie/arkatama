@@ -28,6 +28,12 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::resource('products', ProductController::class)
         ->only(['index', 'show']);
 
+    Route::resource('transactions', TransactionController::class);
+    Route::get('transactions/{transaction}/confirm_payment', [TransactionController::class, 'confirmPayment'])
+    ->name('transactions.confirm_payment');
+    Route::post('transactions/{transaction}/upload_payment', [TransactionController::class, 'uploadPayment'])
+    ->name('user.transactions.upload_payment');
+
     // Profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

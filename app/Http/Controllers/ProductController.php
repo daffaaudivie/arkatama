@@ -9,19 +9,32 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->is('admin/*')) {
-        // Admin sees all products
-        $products = Product::with('category')->paginate(10);
-        return view('admin.products.product_index', compact('products'));
-    } else {
-        // User sees product list
-        $products = Product::with('category')->paginate(12);
-        return view('user.products.product_index', compact('products'));
-    }
-    }
+        if ($request->is('admin/*')) {
+            // Admin sees all products
+            $products = Product::with('category')->paginate(10);
+            return view('admin.products.product_index', compact('products'));
+        } else {
+            // User sees product list with search and filter
+            $query = Product::with('category');
 
+            // Search by name
+            if ($request->filled('search')) {
+                $query->where('name', 'like', '%' . $request->search . '%');
+            }
+
+            // Filter by category
+            if ($request->filled('category')) {
+                $query->where('category_id', $request->category);
+            }
+
+            $products = $query->paginate(10);
+            $categories = Category::all();
+
+            return view('user.products.product_index', compact('products', 'categories'));
+        }
+    }
 
     public function show($id)
     {

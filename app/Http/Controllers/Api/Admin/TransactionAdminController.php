@@ -138,30 +138,43 @@ class TransactionAdminController extends Controller
     }
 
     public function updateStatus(Request $request, $id)
-    {
-        $transaction = Transaction::find($id);
+{
+    $transaction = Transaction::find($id);
 
-        if (!$transaction) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Transaksi tidak ditemukan'
-            ], 404);
-        }
-
-        $request->validate([
-            'status' => 'required|in:pending,paid,cancelled',
-        ]);
-
-        $transaction->update(['status' => $request->status]);
-
-        $transaction->load(['user', 'details.product']);
-
+    if (!$transaction) {
         return response()->json([
-            'success' => true,
-            'message' => 'Status transaksi berhasil diperbarui',
-            'data' => $transaction
-        ], 200);
+            'success' => false,
+            'message' => 'Transaksi tidak ditemukan'
+        ], 404);
     }
+
+    // Ambil status dari semua source: JSON, form-data, query
+    $status = $request->get('status') ?? $request->input('status');
+
+    // Validasi manual
+    $validator = \Validator::make(['status' => $status], [
+        'status' => 'required|in:pending,paid,cancelled',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'message' => 'Validasi gagal',
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    $transaction->update(['status' => $status]);
+
+    $transaction->load(['user', 'details.product']);
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Status transaksi berhasil diperbarui',
+        'data' => $transaction
+    ], 200);
+}
+
+
 
     public function getByUser($userId)
     {

@@ -85,7 +85,7 @@ class CheckoutController extends Controller
      */
     public function confirmPayment(Transaction $transaction)
     {
-        return view('user.transaction.confirm_payment', compact('transaction'));
+    return view('user.transactions.confirm_payment', compact('transaction'));
     }
 
     /**
@@ -104,7 +104,7 @@ class CheckoutController extends Controller
             'status'        => 'pending',
         ]);
 
-        return redirect()->route('user.dashboard')
+        return redirect()->route('user.transactions.index')
                          ->with('success', 'Bukti pembayaran berhasil diunggah!');
     }
 }
