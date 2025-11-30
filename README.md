@@ -13,6 +13,9 @@
   - [🔐 Login User](#-login-user)
   - [🚪 Logout User](#-logout-user)
   - [👤 Profile Management](#-profile-management)
+- [👥 Admin API (Admin)](#-admin-api-customer)
+  - [🔐 Login User](#-login-user)
+- [📖 Category API (Category)](#-category-api-customer)
 
 ## 🌐 Base URL
 http://localhost:8000/api
@@ -174,3 +177,6 @@ Endpoint untuk login user yang sudah terdaftar.
     "token": "12|XaCTVnqknmzb8EkOFLlbiRfXfPS7cGCRvAriSLOb29762d16"
 }
 ```
+
+## 📖 Category API (Admin)
+
