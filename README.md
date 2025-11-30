@@ -1,66 +1,147 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Arkatama API Documentation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![API Status](https://img.shields.io/badge/API-Active-green)
+![Version](https://img.shields.io/badge/Version-1.0.0-blue)
+![Laravel](https://img.shields.io/badge/Laravel-Framework-red)
 
-## About Laravel
+## 📋 Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [🌐 Base URL](#-base-url)
+- [🔍 Test Endpoint](#-test-endpoint)
+- [👥 User API (Customer)](#-user-api-customer)
+  - [📝 Register User](#-register-user)
+  - [🔐 Login User](#-login-user)
+  - [🚪 Logout User](#-logout-user)
+  - [👤 Profile Management](#-profile-management)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🌐 Base URL
+http://localhost:8000/api
+> **📝 Note:** Ganti `localhost:8000` dengan URL server jika sudah di-deploy.
+---
+## 🔍 Test Endpoint
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Endpoint untuk mengecek apakah API berjalan dengan baik.
 
-## Learning Laravel
+### **GET** `/test`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### 📤 Response
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```json
+{
+  "status": "API working!",
+  "timestamp": "2025-11-29T12:00:00"
+}
+```
 
-## Laravel Sponsors
+##👥 User API (Customer)
+📝 Register User
+Endpoint untuk mendaftarkan user baru.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+POST /user/register
 
-### Premium Partners
+POST /user/register
+Parameter Value
+Auth ❌ No
+📥 Request Body
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+```json
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+{
+"name": "Daffa Audyvie",
+"email": "27daffa27@gmail.com",
+"password": "secret",
+"password_confirmation": "secret"
+}
+📤 Response
+json
 
-## Code of Conduct
+{
+"user": {
+"id": 2,
+"name": "Daffa Audyvie",
+"email": "27daffa27@gmail.com",
+"created_at": "...",
+"updated_at": "..."
+},
+"token": "1|ssghN7CU1QfaWLiYm1U3YcyLsaHlCbabwsjIoyO9c4f041c8"
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+##🔐 Login User
+Endpoint untuk login user yang sudah terdaftar.
 
-## Security Vulnerabilities
+POST /user/login
+Parameter Value
+Auth ❌ No
+📥 Request Body
+```json
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+{
+"email": "27daffa27@gmail.com",
+"password": "secret"
+}
+📤 Response
+json
 
-## License
+{
+"user": {
+"id": 2,
+"name": "Daffa Audyvie",
+"email": "27daffa27@gmail.com",
+"created_at": "...",
+"updated_at": "..."
+},
+"token": "1|ssghN7CU1QfaWLiYm1U3YcyLsaHlCbabwsjIoyO9c4f041c8"
+}
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+##🚪 Logout User
+Endpoint untuk logout user.
+
+POST /user/logout
+Parameter Value
+Auth ✅ Bearer token required
+📥 Headers
+Authorization: Bearer <your_token_here>
+📤 Response
+```json
+
+{
+"message": "Logged out successfully"
+}
+```
+
+##👤 Profile Management
+📖 Get Profile
+Mendapatkan data profile user yang sedang login.
+
+GET /user/profile
+
+Parameter Value
+Auth ✅ Bearer token required
+✏️ Update Profile
+Mengupdate data profile user.
+
+PUT /user/profile
+
+Parameter Value
+Auth ✅ Bearer token required
+📥 Request Body Example
+```json
+
+{
+"name": "New Name",
+"email": "new@email.com"
+}
+```
+
+🔧 Authentication
+Untuk endpoint yang memerlukan autentikasi, gunakan Bearer token di header:
+
+Authorization: Bearer <your_token_here>
+Token didapat dari response endpoint /user/register atau /user/login.
