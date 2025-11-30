@@ -15,6 +15,21 @@ class TransactionController extends Controller
 {
     public function store(Request $request)
     {
+        if ($request->has('items') && is_string($request->items)) {
+        $decoded = json_decode($request->items, true);
+
+        if ($decoded === null) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Format items tidak valid, harus JSON array'
+            ], 422);
+        }
+
+        // merge items yang sudah di-decode
+        $request->merge([
+            'items' => $decoded
+        ]);
+    }
         $validator = Validator::make($request->all(), [
             'items' => 'required|array|min:1',
             'items.*.product_id' => 'required|exists:products,id',

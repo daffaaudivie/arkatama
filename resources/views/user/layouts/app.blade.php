@@ -18,7 +18,7 @@
     </div>
 
     <!-- Sidebar -->
-    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+<aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
         class="fixed top-0 left-0 h-full w-64 bg-gray-800 z-30 transition-transform duration-300 lg:translate-x-0">
 
         <!-- Sidebar Header -->
