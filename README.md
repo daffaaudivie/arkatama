@@ -406,6 +406,100 @@ Mendapatkan detail produk berdasarkan ID (akses publik).
     "updated_at": "2024-01-01T12:00:00.000000Z"
 }
 ]
+```
+
+## 🔑 Admin Endpoints (Perlu Login)
+Dokumentasi lengkap untuk API management produk dengan akses admin yang memerlukan autentikasi.
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Admin Bearer token required |
+
+### 1. ➕ Create Product
+Membuat produk baru (Admin only).
+
+### POST api/admin/product
+Headers:
+Content-Type: multipart/form-data
+Authorization: Bearer {your-token}
+#### 📤 Request Body (Form Data)
+```json
+{
+  "name: "Laptop Gaming" (required)
+    description: "High-performance gaming laptop" (optional)
+    price: 15000000 (required)
+    category_id: 1 (required)
+    stock: 25 (required)
+    image: (file upload, max 4MB)
+}
+```
+#### Validation Rules:
+ ##### -name: required, string, max 255 characters
+ ##### -price: required, numeric, minimum 0
+ ##### -stock: required, integer, minimum 0
+ ##### -category_id: required, must exist in categories table
+ ##### -description: nullable, string
+ ##### -image: nullable, must be image file, max 4MB
+
+#### 📥 Response (Contoh)
+```json
+[
+    {
+    "message": "Produk berhasil dibuat",
+    "product": {
+        "id": 3,
+        "name": "Laptop Gaming",
+        "description": "High-performance gaming laptop",
+        "price": 15000000,
+        "category_id": 1,
+        "stock": 25,
+        "image": "1640995400_laptop.jpg",
+        "created_at": "2024-01-01T12:00:00.000000Z",
+        "updated_at": "2024-01-01T12:00:00.000000Z"
+    }
+}
+]
+```
+### 2. ✏️ Update Product
+Mengupdate produk yang sudah ada (Admin only).
+### PUT/ api/admin/product/{id}
+#### Parameters:id (integer, required) - ID produk yang ingin diupdate
+#### Content-Type: multipart/form-data Authorization: Bearer {your-admin-token}
+#### 📤 Request Body (Form Data)
+```json
+{
+  name: "Updated Laptop Gaming" (optional)
+    description: "Updated high-performance gaming laptop" (optional)
+    price: 18000000 (optional)
+    category_id: 2 (optional)
+    stock: 30 (optional)
+    image: (file upload - optional, max 4MB)
+}
+```
+#### 📥 Response (Contoh)
+```json
+[
+    {
+    "message": "Produk berhasil diperbarui",
+    "product": {
+        "id": 1,
+        "name": "Updated Laptop Gaming",
+        "description": "Updated high-performance gaming laptop",
+        "price": 18000000,
+        "category_id": 2,
+        "stock": 30,
+        "image": "1640995500_updated_laptop.jpg",
+        "created_at": "2024-01-01T12:00:00.000000Z",
+        "updated_at": "2024-01-01T14:30:00.000000Z"
+    }
+}
+}
+]
+```
+
+
+
+
+
 
 
 
