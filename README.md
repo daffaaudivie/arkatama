@@ -25,7 +25,7 @@
     - [🗑️ Delete Category](#delete-category)
 
 ## 🌐 Base URL
-http://localhost:8000/api
+http://localhost:8000/
 
 > **📝 Note:** Ganti `localhost:8000` dengan URL server jika sudah di-deploy.
 
@@ -391,7 +391,7 @@ Mendapatkan daftar semua produk (akses publik).
 ```
 ### 🔍 Get Single Product
 Mendapatkan detail produk berdasarkan ID (akses publik).
-### GET /product/{id}
+### GET api/product/{id}
 ##### Parameters: id (integer, required) - ID produk yang ingin ditampilkan
 ##### Headers: Content-Type: application/json
 #### 📥 Response (Contoh)
@@ -495,7 +495,7 @@ Mengupdate produk yang sudah ada (Admin only).
 ```
 ### 3. 🗑️ Delete Product
 Menghapus produk berdasarkan ID (Admin only).
-### DELETE /admin/product/{id}
+### DELETE api/admin/product/{id}
 #### Parameters: id (integer, required) - ID produk yang ingin dihapus
 #### Headers: Content-Type: application/json Authorization: Bearer {you-admin-token}
 #### 📥 Response Success (200)
@@ -560,7 +560,7 @@ Membuat transaksi baru dengan multiple items.
 ```
 ### 2. 📋 Get My Transactions
 Mendapatkan semua transaksi milik user yang sedang login.
-### GET /transactions/my
+### GET api/transactions/my
 #### Headers: Content-Type: application/json, Authorization: Bearer {your-user-token}
 #### 📥 Response 
 ```json
