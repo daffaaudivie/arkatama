@@ -34,26 +34,18 @@ class TransactionController extends Controller
         return view('user.transactions.transaction_index', compact('transactions'));
     }
 
-
-    /**
-     * Admin create form
-     */
     public function create()
     {
         $users = User::all();
         return view('admin.transactions.transaction_create', compact('users'));
     }
 
-
-    /**
-     * Admin Store
-     */
     public function store(Request $request)
     {
         $request->validate([
             'user_id'     => 'required|exists:users,id',
             'total_price' => 'required|numeric',
-            'status'      => 'required|in:pending,paid,cancelled,waiting_verification',
+            'status'      => 'required|in:pending,paid,cancelled',
         ]);
 
         Transaction::create($request->all());
@@ -63,20 +55,12 @@ class TransactionController extends Controller
             ->with('success', 'Transaksi berhasil ditambahkan');
     }
 
-
-    /**
-     * Admin edit form
-     */
     public function edit(Transaction $transaction)
     {
         $users = User::all();
         return view('admin.transactions.transaction_edit', compact('transaction', 'users'));
     }
 
-
-    /**
-     * Admin update
-     */
     public function update(Request $request, Transaction $transaction)
     {
         $request->validate([
