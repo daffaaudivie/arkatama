@@ -112,22 +112,22 @@ Authorization: Bearer <your_token_here> Contoh: Bearer 1|ssghN7CU1QfaWLiYm1U3Ycy
 }
 ```
 
-### 👤 Profile Management
-📖 Get Profile
+#### 👤 Profile Management
+### 📖 Get Profile
 Mendapatkan data profile user yang sedang login.
+## GET /user/profile
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Bearer token required |
 
-GET /user/profile
-
-Parameter Value
-Auth ✅ Bearer token required
-✏️ Update Profile
+## ✏️ Update Profile
 Mengupdate data profile user.
+## PUT /user/profile
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ✅ Bearer token required |
+## 📥 Request Body Example
 
-PUT /user/profile
-
-Parameter Value
-Auth ✅ Bearer token required
-📥 Request Body Example
 ```json
 
 {
@@ -136,8 +136,8 @@ Auth ✅ Bearer token required
 }
 ```
 
-🔧 Authentication
+### 🔧 Authentication
 Untuk endpoint yang memerlukan autentikasi, gunakan Bearer token di header:
 
-Authorization: Bearer <your_token_here>
+## Authorization: Bearer <your_token_here>
 Token didapat dari response endpoint /user/register atau /user/login.
