@@ -30,24 +30,17 @@ Endpoint untuk mengecek apakah API berjalan dengan baik.
 
 #### 📤 Response
 
-```json
-{
-  "status": "API working!",
-  "timestamp": "2025-11-29T12:00:00"
-}
-```
+#### 👥 User API (Customer)
 
-###👥 User API (Customer)
-📝 Register User
+### 📝 Register User
 Endpoint untuk mendaftarkan user baru.
+### POST /user/register
 
-POST /user/register
+| Parameter | Value |
+|-----------|-------|
+| **Auth** | ❌ No |
 
-POST /user/register
-Parameter Value
-Auth ❌ No
-📥 Request Body
-
+### 📥 Request Body
 
 ```json
 
@@ -57,6 +50,7 @@ Auth ❌ No
 "password": "secret",
 "password_confirmation": "secret"
 }
+
 📤 Response
 json
 
@@ -72,7 +66,7 @@ json
 }
 ```
 
-##🔐 Login User
+### 🔐 Login User
 Endpoint untuk login user yang sudah terdaftar.
 
 POST /user/login
