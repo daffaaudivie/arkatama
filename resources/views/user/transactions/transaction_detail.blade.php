@@ -35,11 +35,17 @@
                 </div>
                 <div>
                     <p class="text-sm text-gray-500 mb-1">Status</p>
-                    <span class="inline-block px-3 py-1 rounded-full text-sm font-semibold text-white
-                        {{ $transaction->status == 'paid' ? 'bg-green-500' : '' }}
-                        {{ $transaction->status == 'pending' ? 'bg-yellow-500' : '' }}
-                        {{ $transaction->status == 'cancelled' ? 'bg-red-500' : '' }}">
-                        {{ ucfirst($transaction->status) }}
+                    @php
+                        $statusValue = $transaction->status->value;
+                        $colors = [
+                            'pending' => 'bg-yellow-500 text-white',
+                            'waiting_verification' => 'bg-blue-500 text-white',
+                            'paid' => 'bg-green-500 text-white',
+                            'cancelled' => 'bg-red-500 text-white',
+                        ];
+                    @endphp
+                    <span class="inline-block px-3 py-1 rounded-full text-sm font-semibold {{ $colors[$statusValue] ?? 'bg-gray-500 text-white' }}">
+                        {{ $transaction->status->label() }}
                     </span>
                 </div>
                 <div>

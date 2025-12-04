@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\TransactionStatus;
 
 class Transaction extends Model
 {
@@ -25,4 +26,7 @@ class Transaction extends Model
     {
         return $this->hasMany(TransactionDetail::class);
     }
+    protected $casts = [
+        'status' => TransactionStatus::class,
+    ];
 }

@@ -143,7 +143,7 @@ class TransactionController extends Controller
             ], 500);
         }
     }
-    // GET /transactions/my → tampilkan transaksi user yang sedang login
+   
     public function myTransactions()
     {
         $userId = auth()->id();
@@ -159,6 +159,36 @@ class TransactionController extends Controller
             'data' => $transactions
         ], 200);
     }
+
+    public function uploadPayment(Request $request)
+{
+    $request->validate([
+        'transaction_id' => 'required|exists:transactions,id',
+        'payment_proof'  => 'required|image|mimes:jpeg,png,jpg,gif,pdf|max:2048',
+    ]);
+
+    $userId = auth()->id();
+
+    $transaction = Transaction::where('id', $request->transaction_id)
+                              ->where('user_id', $userId)
+                              ->firstOrFail();
+
+    // Simpan file
+    if ($request->hasFile('payment_proof')) {
+        $file = $request->file('payment_proof');
+        $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('payment_proofs', $filename, 'public');
+
+        $transaction->payment_proof = $path;
+        $transaction->save();
+    }
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Payment proof uploaded successfully',
+        'payment_proof' => asset('storage/' . $transaction->payment_proof)
+    ]);
+}
 
     // GET /transactions/status/{status} → filter berdasarkan status
     public function getByStatus($status)

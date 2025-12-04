@@ -100,12 +100,12 @@
                         <div class="text-right">
                             <p class="font-bold text-gray-800">Rp {{ number_format($order->total_price, 0, ',', '.') }}</p>
                             <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full
-                                @if($order->status == 'completed') bg-green-100 text-green-700
-                                @elseif($order->status == 'pending') bg-yellow-100 text-yellow-700
-                                @elseif($order->status == 'processing') bg-blue-100 text-blue-700
+                                @if($order->status == \App\Enums\TransactionStatus::PAID) bg-green-100 text-green-700
+                                @elseif($order->status == \App\Enums\TransactionStatus::PENDING) bg-yellow-100 text-yellow-700
+                                @elseif($order->status == \App\Enums\TransactionStatus::CANCELLED) bg-red-100 text-red-700
                                 @else bg-gray-100 text-gray-700
                                 @endif">
-                                {{ ucfirst($order->status) }}
+                                {{ $order->status->label() }}
                             </span>
                         </div>
                     </div>

@@ -18,6 +18,8 @@ class Product extends Model
         'stock',
     ];
 
+    protected $appends = ['image_url'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -26,5 +28,10 @@ class Product extends Model
     public function transactionDetails()
     {
         return $this->hasMany(TransactionDetail::class);
+    }
+
+
+    public function getImageUrlAttribute(){
+        return asset('storage/products/' . $this->image);
     }
 }

@@ -45,6 +45,14 @@
 
                     <tbody class="bg-white divide-y divide-gray-200">
                         @forelse($transactions as $transaction)
+                        @php
+                            $colors = [
+                                'pending' => 'bg-yellow-100 text-yellow-700',
+                                'paid' => 'bg-green-100 text-green-700',
+                                'cancelled' => 'bg-red-100 text-red-700',
+                            ];
+                            $statusValue = $transaction->status->value;
+                        @endphp
                         <tr class="hover:bg-gray-50 transition-colors">
 
                             <!-- User -->
@@ -59,17 +67,8 @@
 
                             <!-- Status -->
                             <td class="px-6 py-4 text-center">
-                                @php
-                                    $colors = [
-                                        'pending' => 'bg-yellow-100 text-yellow-700',
-                                        'waiting_verification' => 'bg-blue-100 text-blue-700',
-                                        'paid' => 'bg-green-100 text-green-700',
-                                        'cancelled' => 'bg-red-100 text-red-700',
-                                    ];
-                                @endphp
-
-                                <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $colors[$transaction->status] ?? 'bg-gray-100 text-gray-700' }}">
-                                    {{ ucfirst(str_replace('_',' ', $transaction->status)) }}
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $colors[$statusValue] ?? 'bg-gray-100 text-gray-700' }}">
+                                    {{ ucfirst(str_replace('_',' ', $statusValue)) }}
                                 </span>
                             </td>
 
@@ -104,14 +103,13 @@
                                             Details
                                         </a>
 
-
                                     <!-- Change Status -->
                                     <form action="{{ route('admin.transactions.update_status', $transaction->id) }}" method="POST" class="flex items-center gap-2">
                                         @csrf
                                         <select name="status" class="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
-                                            <option value="pending" {{ $transaction->status=='pending' ? 'selected' : '' }}>Pending</option>
-                                            <option value="paid" {{ $transaction->status=='paid' ? 'selected' : '' }}>Paid</option>
-                                            <option value="cancelled" {{ $transaction->status=='cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                            <option value="pending" {{ $statusValue=='pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="paid" {{ $statusValue=='paid' ? 'selected' : '' }}>Paid</option>
+                                            <option value="cancelled" {{ $statusValue=='cancelled' ? 'selected' : '' }}>Cancelled</option>
                                         </select>
 
                                         <button type="submit"
@@ -154,6 +152,9 @@
         <!-- Mobile Card View -->
         <div class="md:hidden space-y-4">
             @forelse($transactions as $transaction)
+            @php
+                $statusValue = $transaction->status->value;
+            @endphp
             <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
                 <div class="p-5 space-y-4">
                     
@@ -180,8 +181,8 @@
                                 'cancelled' => 'bg-red-100 text-red-700',
                             ];
                         @endphp
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $colors[$transaction->status] ?? 'bg-gray-100 text-gray-700' }}">
-                            {{ ucfirst(str_replace('_',' ', $transaction->status)) }}
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $colors[$statusValue] ?? 'bg-gray-100 text-gray-700' }}">
+                            {{ ucfirst(str_replace('_',' ', $statusValue)) }}
                         </span>
                     </div>
 
@@ -221,9 +222,9 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Update Status</label>
                                 <select name="status" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                    <option value="pending" {{ $transaction->status=='pending' ? 'selected' : '' }}>Pending</option>
-                                    <option value="paid" {{ $transaction->status=='paid' ? 'selected' : '' }}>Paid</option>
-                                    <option value="cancelled" {{ $transaction->status=='cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                    <option value="pending" {{ $statusValue=='pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="paid" {{ $statusValue=='paid' ? 'selected' : '' }}>Paid</option>
+                                    <option value="cancelled" {{ $statusValue=='cancelled' ? 'selected' : '' }}>Cancelled</option>
                                 </select>
                             </div>
 

@@ -35,12 +35,22 @@
                 </div>
                 <div>
                     <p class="text-sm text-gray-500 mb-1">Status</p>
-                    <span class="inline-block px-3 py-1 rounded-full text-sm font-semibold text-white
-                        {{ $transaction->status == 'paid' ? 'bg-green-500' : '' }}
-                        {{ $transaction->status == 'pending' ? 'bg-yellow-500' : '' }}
-                        {{ $transaction->status == 'cancelled' ? 'bg-red-500' : '' }}">
-                        {{ ucfirst($transaction->status) }}
-                    </span>
+                    <div class="flex items-center justify-between">
+                        @php
+                            $colors = [
+                                'pending' => 'bg-yellow-100 text-yellow-700',
+                                'waiting_verification' => 'bg-blue-100 text-blue-700',
+                                'paid' => 'bg-green-100 text-green-700',
+                                'cancelled' => 'bg-red-100 text-red-700',
+                            ];
+
+                            // ambil nilai string dari enum untuk key warna
+                            $statusValue = $transaction->status->value;
+                        @endphp
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $colors[$statusValue] ?? 'bg-gray-100 text-gray-700' }}">
+                            {{ $transaction->status->label() }}
+                        </span>
+                    </div>
                 </div>
                 <div>
                     <p class="text-sm text-gray-500 mb-1">Total Price</p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Enums\TransactionStatus;
 use App\Models\TransactionDetail;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
@@ -41,24 +42,15 @@ class CheckoutController extends Controller
             return back()->with('error', 'Stock tidak mencukupi.');
         }
 
-        /**
-         * Hitung total
-         */
         $subtotal = $product->price * $quantity;
 
-        /**
-         * Simpan transaksi utama
-         */
         $transaction = Transaction::create([
             'user_id'      => Auth::id(),
             'total_price'  => $subtotal,
             'subtotal'     => $subtotal,
-            'status'       => 'pending',
+            'status'       => TransactionStatus::PENDING,
         ]);
 
-        /**
-         * Simpan detail transaksi
-         */
         TransactionDetail::create([
             'transaction_id' => $transaction->id,
             'product_id'     => $product->id,
@@ -67,9 +59,6 @@ class CheckoutController extends Controller
             'subtotal'       => $subtotal,
         ]);
 
-        /**
-         * Kurangi stok produk
-         */
         $product->decrement('stock', $quantity);
 
         /**
@@ -101,7 +90,7 @@ class CheckoutController extends Controller
 
         $transaction->update([
             'payment_proof' => $file,
-            'status'        => 'pending',
+            'status'       => TransactionStatus::PENDING,
         ]);
 
         return redirect()->route('user.transactions.index')

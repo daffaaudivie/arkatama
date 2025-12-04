@@ -156,17 +156,16 @@
                             <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                                 <td class="py-3 px-2 font-semibold text-gray-800">#{{ $order->id }}</td>
                                 <td class="py-3 px-2 text-gray-600">{{ $order->user->name ?? 'N/A' }}</td>
-                                <td class="py-3 px-2 font-semibold text-gray-800">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
+                                <td class="py-3 px-2 font-semibold text-gray-800">Rp {{ number_format($order->total_price, 0, ',', '.') }}</td>
                                 <td class="py-3 px-2">
                                     <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full
-                                        @if($order->status == 'completed') bg-green-100 text-green-700
-                                        @elseif($order->status == 'pending') bg-yellow-100 text-yellow-700
-                                        @elseif($order->status == 'processing') bg-blue-100 text-blue-700
-                                        @elseif($order->status == 'cancelled') bg-red-100 text-red-700
+                                    @if($order->status == \App\Enums\TransactionStatus::PAID) bg-green-100 text-green-700
+                                        @elseif($order->status == \App\Enums\TransactionStatus::PENDING) bg-yellow-100 text-yellow-700
+                                        @elseif($order->status == \App\Enums\TransactionStatus::CANCELLED) bg-red-100 text-red-700
                                         @else bg-gray-100 text-gray-700
                                         @endif">
-                                        {{ ucfirst($order->status) }}
-                                    </span>
+                                        {{ $order->status->label() }}
+</span>
                                 </td>
                                 <td class="py-3 px-2 text-sm text-gray-500">{{ $order->created_at->format('M d, Y') }}</td>
                             </tr>

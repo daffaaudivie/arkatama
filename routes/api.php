@@ -5,9 +5,11 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\LatihanProductController;
 use App\Http\Controllers\Api\Admin\ProductAdminController;
 use App\Http\Controllers\Api\Admin\CategoryAdminController;
 use App\Http\Controllers\Api\Admin\TransactionAdminController;
+use App\Http\Controllers\Api\LatihanTransactionController;
 use App\Http\Controllers\Api\Admin\AuthController as AdminAuthController;
 
 // ----------------------
@@ -22,10 +24,13 @@ Route::post('/user/register', [AuthController::class, 'registerUser']);
 Route::post('/user/login', [AuthController::class, 'loginUser']);
 
 // Public Product & Category Routes
+Route::get('/product/latihan', [LatihanProductController::class, 'index']);
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'show']);
 Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/category/{id}', [CategoryController::class, 'show']);
+
+
 
 // ----------------------
 // PROTECTED ROUTES - USER
@@ -35,11 +40,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user/logout', [AuthController::class, 'logout']);
     Route::get('/user/profile', [AuthController::class, 'profile']);
     Route::put('/user/profile', [AuthController::class, 'updateProfile']);
+    Route::get('/user/transaction/latihan', [LatihanTransactionController::class, 'index']);
+    Route::get('/user/transaction/latihan/my', [LatihanTransactionController::class, 'myTransactions']);
     
     // Transaction Routes (menggunakan prefix untuk menghindari konflik)
     Route::prefix('transactions')->group(function () {
         Route::post('/', [TransactionController::class, 'store']);          // POST /api/Transactions
-        Route::get('/my', [TransactionController::class, 'myTransactions']); // GET /api/transactions/my
+        Route::get('/my', [TransactionController::class, 'myTransactions']); 
+        Route::post('/upload-payment', [TransactionController::class, 'uploadPayment']);
     });
 });
 
@@ -59,9 +67,13 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [AdminAuthController::class, 'profile']); 
     
     // Admin Product Management
+    Route::post('/product/latihan', [LatihanProductController::class, 'store']);
+    Route::put('/product/latihan/{id}', [LatihanProductController::class, 'update']);
+    Route::delete('/product/latihan/{id}', [LatihanProductController::class, 'destroy']);
     Route::post('/product', [ProductAdminController::class, 'store']);
     Route::put('/product/{id}', [ProductAdminController::class, 'update']);
     Route::delete('/product/{id}', [ProductAdminController::class, 'destroy']);
+    Route::get('/transaction/latihan', [LatihanTransactionController::class, 'index']);
     
     // Admin Category Management
     Route::post('/category', [CategoryAdminController::class, 'store']);

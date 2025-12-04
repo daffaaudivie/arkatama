@@ -15,7 +15,7 @@ return new class extends Migration
                   ->cascadeOnDelete();
             $table->decimal('total_price', 12, 2)->default(0);
             $table->string('payment_proof')->nullable();
-            $table->enum('status', ['pending', 'paid', 'cancelled'])->default('pending');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

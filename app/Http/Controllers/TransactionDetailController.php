@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TransactionDetail;
+use App\Enums\TransactionStatus;
 use App\Models\Transaction;
 use App\Models\Product;
 use Illuminate\Http\Request;
