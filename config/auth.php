@@ -13,7 +13,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'sanctum',
+            'driver' => 'jwt',
             'provider' => 'users',
         ],
 
@@ -23,7 +23,7 @@ return [
         ],
 
         'admin-api' => [
-            'driver' => 'sanctum',   // Untuk API
+            'driver' => 'jwt',  
             'provider' => 'admins',
         ],
     ],

@@ -2,34 +2,32 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TransactionResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray($request)
-{
-    $data = [
-        'id'          => $this->id,
-        'total_price' => $this->total_price,
-        'status'      => $this->status,
-        'created_at'  => $this->created_at->toDateTimeString(),
-    ];
+    {
+        $data = [
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'total_price' => $this->total_price,
+            'status' => $this->status,
+            'payment_proof' => $this->payment_proof ? asset('storage/' . $this->payment_proof) : null,
+            'created_at' => $this->created_at->toDateTimeString(),
+        ];
 
-// if (auth()->guard('sanctum')->user() instanceof \App\Models\Admin) {
-    //     $data['details'] = TransactionDetailResource::collection($this->details);
-    // }
+        if ($this->details->count()) {
+            $data['details'] = $this->details->map(function ($detail) {
+                return [
+                    'product_name' => $detail->product->name,
+                    'quantity' => $detail->quantity,
+                    'price_per_item' => $detail->price_per_item,
+                    'subtotal' => $detail->subtotal
+                ];
+            });
+        }
 
-    if ($this->details->count()) {
-    $data['details'] = TransactionDetailResource::collection($this->details);
-}
-
-    return $data;
-}
-
+        return $data;
+    }
 }

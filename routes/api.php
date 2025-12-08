@@ -35,13 +35,15 @@ Route::get('/category/{id}', [CategoryController::class, 'show']);
 // ----------------------
 // PROTECTED ROUTES - USER
 // ----------------------
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:api')->group(function () {
     // User Auth Routes
     Route::post('/user/logout', [AuthController::class, 'logout']);
     Route::get('/user/profile', [AuthController::class, 'profile']);
     Route::put('/user/profile', [AuthController::class, 'updateProfile']);
+    Route::post('/user/refresh', [AuthController::class, 'refresh']);
     Route::get('/user/transaction/latihan', [LatihanTransactionController::class, 'index']);
     Route::get('/user/transaction/latihan/my', [LatihanTransactionController::class, 'myTransactions']);
+    Route::post('/user/transaction/latihan/store', [TransactionController::class, 'store']);
     
     // Transaction Routes (menggunakan prefix untuk menghindari konflik)
     Route::prefix('transactions')->group(function () {
